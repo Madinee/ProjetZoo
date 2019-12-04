@@ -29,16 +29,35 @@ public class ZooTest {
 		a2=new Chat("milou", TypeAnimal.Chat);
 		
 		animal=new ArrayList<Animal>();
+		liste=new ArrayList<Secteur>();
 		animal.add(a1);
 		animal.add(a2);
 		s1= new Secteur(TypeAnimauxDansSecteur.Chien, animal);
 		liste.add(s1);
 		zoo=new Zoo(14,liste);
 	}
+	/*
+	 *  test sans exception avec la bonne valeur
+	 */
 	@Test
 	public void nbVisiteurAutoriser() throws LimiteVisiteException {
 		int nb=zoo.getLimiteVisiteur();
-		assertEquals(14,nb);
+		assertEquals(15,nb);//puisqu'il y a un seul secteur dans le zoo le nombre maxi sera 15
+	}
+	/*
+	 * test avec exception
+	 */
+	@Test(expected = LimiteVisiteException.class)
+	public void nbVisiteurLimite() throws LimiteVisiteException
+	{
+		Zoo zoo2=new Zoo(16,liste);// a 16 l'exception est capturé par la classe d'exception
+		
+	}
+	@Test
+	public void ChienDansBonSecteur()
+	{
+		TypeAnimauxDansSecteur bon=s1.getTypeAnimauxDansSecteur();
+		assertEquals(TypeAnimauxDansSecteur.Chien, bon);
 	}
 
 

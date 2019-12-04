@@ -30,9 +30,9 @@ public class Zoo {
 	}
 	public int getLimiteVisiteur() throws LimiteVisiteException
 	{
-		if(this.visiteur>=secteursAnimaux.size()*15)
+		if(this.visiteur>secteursAnimaux.size()*15)//le nombre maximal de visiteur par secteur est 14 a partir de 15 on lève une exception
 			throw new LimiteVisiteException();
-		return this.visiteur;
+		return secteursAnimaux.size()*15;
 	}
 	
 	public void nouvelAnimal()
